@@ -1,0 +1,53 @@
+repos:
+  # Python formatting and linting
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.6.5
+    hooks:
+      # Run the linter
+      - id: ruff
+        args: [--fix]
+        files: ^ai/
+      # Run the formatter
+      - id: ruff-format
+        files: ^ai/
+
+  # JavaScript/TypeScript formatting and linting
+  - repo: local
+    hooks:
+      - id: frontend-prettier
+        name: Frontend Prettier (npm)
+        entry: prettier --write
+        language: node
+        additional_dependencies:
+          - prettier@3.3.3
+        files: ^frontend/.*\.(js|jsx|ts|tsx|json|css|scss|md|yml|yaml)$
+
+  - repo: https://github.com/pre-commit/mirrors-eslint
+    rev: v9.37.0
+    hooks:
+      - id: eslint
+        files: \.(js|jsx|ts|tsx)$
+        types: [file]
+        args: [--fix, --max-warnings=0]
+        additional_dependencies:
+          - eslint@9.37.0
+          - typescript@5.6.2
+          - typescript-eslint@8.45.0
+          - '@eslint/js@9.37.0'
+          - eslint-plugin-react-hooks@5.2.0
+          - eslint-plugin-react-refresh@0.4.24
+          - globals@16.5.0
+
+  # General hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+        args: [--maxkb=1000]
+      - id: check-merge-conflict
+      - id: check-case-conflict
+      - id: mixed-line-ending
+        args: [--fix=lf]
