@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
-import { AuthService } from './auth.service';
-import { AuthController } from './auth.controller';
+import { RoomService } from './room.service';
+import { RoomController } from './room.controller';
 import { JwtGuard } from '../../common/jwt.guard';
 import { RoleGuard } from '../../common/role.guard';
 
@@ -13,8 +13,8 @@ import { RoleGuard } from '../../common/role.guard';
       signOptions: { expiresIn: '1d' },
     }),
   ],
-  providers: [AuthService, JwtGuard, RoleGuard],
-  controllers: [AuthController],
+  providers: [RoomService, JwtGuard, RoleGuard],
+  controllers: [RoomController],
   exports: [JwtGuard, RoleGuard, JwtModule], // Thay JwtService bằng JwtModule
 })
-export class AuthModule {}
+export class RoomModule {}
