@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Put, Delete, Body, Param, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Query, Body, Param, UseGuards } from '@nestjs/common';
 import { RoomService } from './room.service';
 import { JwtGuard } from '../../common/jwt.guard';
 import { RoleGuard } from '../../common/role.guard';
@@ -17,10 +17,23 @@ export class RoomController {
   }
 
   // 🔓 ai login cũng xem được
+  // @UseGuards(JwtGuard)
+  // @Get()
+  // findAll() {
+  //   return this.roomService.findAll();
+  // }
+
+  // 🔓 ai login cũng xem được
+  @UseGuards(JwtGuard)
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.roomService.findOne(id);
+  }
+
   @UseGuards(JwtGuard)
   @Get()
-  findAll() {
-    return this.roomService.findAll();
+  find(@Query() query: any) {
+    return this.roomService.find(query);
   }
 
   // 🔐 update

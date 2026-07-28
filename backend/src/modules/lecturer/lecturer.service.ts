@@ -65,6 +65,25 @@ export class LecturerService {
     return data;
   }
 
+  async updateBusy(id: number, data: any) {
+    const { data: busy, error } = await supabase
+      .from('lecturer_busy')
+      .update(data)
+      .eq('id', id)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return busy;
+  }
+
+  async deleteBusy(id: number) {
+    const { error } = await supabase.from('lecturer_busy').delete().eq('id', id);
+
+    if (error) throw error;
+    return { message: 'Xóa lịch bận thành công' };
+  }
+
   // ===== PREFERENCE =====
 
   async addPreference(data: any) {
@@ -86,5 +105,24 @@ export class LecturerService {
 
     if (error) throw error;
     return data;
+  }
+
+  async updatePreference(id: number, data: any) {
+    const { data: busy, error } = await supabase
+      .from('lecturer_preference')
+      .update(data)
+      .eq('id', id)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return busy;
+  }
+
+  async deletePreference(id: number) {
+    const { error } = await supabase.from('lecturer_preference').delete().eq('id', id);
+
+    if (error) throw error;
+    return { message: 'Xóa lịch mong muốn thành công' };
   }
 }

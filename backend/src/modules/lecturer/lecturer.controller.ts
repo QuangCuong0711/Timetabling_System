@@ -9,6 +9,7 @@ import {
   Query,
   UseGuards,
   Req,
+  BadRequestException,
 } from '@nestjs/common';
 import { LecturerService } from './lecturer.service';
 import { JwtGuard } from '../../common/jwt.guard';
@@ -66,6 +67,30 @@ export class LecturerController {
     return this.lecturerService.getBusy(Number(lecturer_id));
   }
 
+  // 3. Cập nhật lịch bận
+  // PUT /lecturer/busy?id=1
+  @UseGuards(JwtGuard)
+  @Put('busy')
+  updateBusy(@Query('id') id: string, @Body() data: any) {
+    const busyId = Number(id);
+    if (!id || isNaN(busyId)) {
+      throw new BadRequestException('Vui lòng truyền id hợp lệ dạng số trên Query string');
+    }
+    return this.lecturerService.updateBusy(busyId, data);
+  }
+
+  // 4. Xóa lịch bận theo ID bản ghi
+  // DELETE /lecturer/busy?id=1
+  @UseGuards(JwtGuard)
+  @Delete('busy')
+  deleteBusy(@Query('id') id: string) {
+    const busyId = Number(id);
+    if (!id || isNaN(busyId)) {
+      throw new BadRequestException('Vui lòng truyền id hợp lệ dạng số trên Query string');
+    }
+    return this.lecturerService.deleteBusy(busyId);
+  }
+
   // ===== PREFERENCE =====
 
   @UseGuards(JwtGuard)
@@ -81,5 +106,29 @@ export class LecturerController {
   @Get('preference')
   getPreference(@Query('lecturer_id') lecturer_id: string) {
     return this.lecturerService.getPreference(Number(lecturer_id));
+  }
+
+  // Cập nhật nguyện vọng/sở thích theo ID
+  // PUT /lecturer/preference?id=1
+  @UseGuards(JwtGuard)
+  @Put('preference')
+  updatePreference(@Query('id') id: string, @Body() data: any) {
+    const prefId = Number(id);
+    if (!id || isNaN(prefId)) {
+      throw new BadRequestException('Vui lòng truyền id hợp lệ dạng số trên Query string');
+    }
+    return this.lecturerService.updatePreference(prefId, data);
+  }
+
+  // Xóa nguyện vọng/sở thích theo ID
+  // DELETE /lecturer/preference?id=1
+  @UseGuards(JwtGuard)
+  @Delete('preference')
+  deletePreference(@Query('id') id: string) {
+    const prefId = Number(id);
+    if (!id || isNaN(prefId)) {
+      throw new BadRequestException('Vui lòng truyền id hợp lệ dạng số trên Query string');
+    }
+    return this.lecturerService.deletePreference(prefId);
   }
 }
