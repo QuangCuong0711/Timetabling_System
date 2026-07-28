@@ -7,23 +7,20 @@ import { Button, Card, Table, Modal, Input, Select, Badge, Spinner } from '../..
 import type { Room, RoomType } from '../../types';
 
 const ROOM_TYPE_OPTIONS = [
-  { value: 'normal', label: 'Phòng thường' },
-  { value: 'lab', label: 'Phòng Lab' },
-  { value: 'computer', label: 'Phòng máy tính' },
+  { value: 'LT', label: 'Lý thuyết' },
+  { value: 'TH', label: 'Thực hành' },
 ];
 
 const ROOM_TYPE_COLOR: Record<RoomType, 'blue' | 'green' | 'amber'> = {
-  normal: 'blue',
-  lab: 'green',
-  computer: 'amber',
+  TH: 'blue',
+  LT: 'green',
 };
 const ROOM_TYPE_LABEL: Record<RoomType, string> = {
-  normal: 'Thường',
-  lab: 'Lab',
-  computer: 'Máy tính',
+  TH: 'Thực hành',
+  LT: 'Lý Thuyết',
 };
 
-const EMPTY: Partial<Room> = { name: '', capacity: 40, room_type: 'normal' };
+const EMPTY: Partial<Room> = { name: '', capacity: 40, room_type: 'LT' };
 
 export default function RoomsPage() {
   const { user } = useAuthStore();

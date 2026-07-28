@@ -1,5 +1,5 @@
 // ── Auth ──────────────────────────────────────────────────────
-export type Role = 'ADMIN' | 'TRAINING_STAFF' | 'FACILITY_STAFF' | 'LECTURER' | 'DEPARTMENT_HEAD';
+export type Role = 'ADMIN' | 'EDUCATION_STAFF' | 'FACILITY_STAFF' | 'LECTURER' | 'DEPT_HEAD';
 
 export interface User {
   id: string;
@@ -14,7 +14,7 @@ export interface AuthState {
 }
 
 // ── Room ──────────────────────────────────────────────────────
-export type RoomType = 'normal' | 'lab' | 'computer';
+export type RoomType = 'TH' | 'LT';
 
 export interface Room {
   id: number;

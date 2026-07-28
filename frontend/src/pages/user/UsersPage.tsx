@@ -7,18 +7,18 @@ import type { Role } from '../../types';
 
 const ROLE_OPTIONS = [
   { value: 'ADMIN', label: 'Quản trị viên' },
-  { value: 'TRAINING_STAFF', label: 'CV Phòng Đào tạo' },
+  { value: 'EDUCATION_STAFF', label: 'CV Phòng Đào tạo' },
   { value: 'FACILITY_STAFF', label: 'Phòng HCQT' },
   { value: 'LECTURER', label: 'Giảng viên' },
-  { value: 'DEPARTMENT_HEAD', label: 'Trưởng bộ môn' },
+  { value: 'DEPT_HEAD', label: 'Trưởng bộ môn' },
 ];
 
 const ROLE_COLOR: Record<Role, 'red' | 'blue' | 'green' | 'amber' | 'purple'> = {
   ADMIN: 'red',
-  TRAINING_STAFF: 'blue',
+  EDUCATION_STAFF: 'blue',
   FACILITY_STAFF: 'green',
   LECTURER: 'amber',
-  DEPARTMENT_HEAD: 'purple',
+  DEPT_HEAD: 'purple',
 };
 
 export default function UsersPage() {
